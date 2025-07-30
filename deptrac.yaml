@@ -5,26 +5,72 @@ deptrac:
         - '#.*test.*#'
     layers:
         -
-            name: Controller
+            name: Domain
             collectors:
                 -
-                    type: classLike
-                    value: .*Controller.*
+                    type: bool
+                    must:
+                        -
+                            type: directory
+                            value: src/Domain/.*
+                    must_not:
+                        -
+                            type: directory
+                            value: vendor/.*
         -
-            name: Repository
+            name: Application
             collectors:
                 -
-                    type: classLike
-                    value: .*Repository.*
+                    type: bool
+                    must:
+                        -
+                            type: directory
+                            value: src/Application/.*
+                    must_not:
+                        -
+                            type: directory
+                            value: vendor/.*
         -
-            name: Service
+            name: Infrastructure
             collectors:
                 -
-                    type: classLike
-                    value: .*Service.*
+                    type: bool
+                    must:
+                        -
+                            type: directory
+                            value: src/Infrastructure/.*
+                    must_not:
+                        -
+                            type: directory
+                            value: vendor/.*
+        -
+            name: Vendor
+            collectors:
+                -
+                    type: bool
+                    must:
+                        -
+                            type: classLike
+                            value: .*
+                    must_not:
+                        -
+                            type: layer
+                            value: Infrastructure
+                        -
+                            type: layer
+                            value: Domain
+                        -
+                            type: layer
+                            value: Application
+
+
     ruleset:
-        Controller:
-            - Service
-        Service:
-            - Repository
-        Repository:
+        Domain:
+            - Domain
+        Application:
+            - Domain
+            - Application
+        Infrastructure:
+            - Infrastructure
+            - +Application
+            - Vendor
