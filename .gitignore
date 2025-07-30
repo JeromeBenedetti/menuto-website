@@ -22,3 +22,7 @@
 ###> IntelliJ PhpStorm ###
 /.idea/
 ###< IntelliJ PhpStorm ###
+
+###> deptrac/deptrac ###
+/.deptrac.cache
+###< deptrac/deptrac ###
