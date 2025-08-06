@@ -18,9 +18,6 @@ services:
         exclude:
             - '../src/Domain/Entity/'
 
-    Application\:
-        resource: '../src/Application'
-
     Infrastructure\:
         resource: '../src/Infrastructure/'
         exclude:
