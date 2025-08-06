@@ -17,10 +17,10 @@ doctrine:
         auto_mapping: true
         mappings:
             App:
-                type: attribute
+                type: xml
                 is_bundle: false
                 dir: '%kernel.project_dir%/src/Infrastructure/Doctrine/Entity'
-                prefix: 'Infrastructure\Doctrine\Entity'
+                prefix: 'Domain\Entity'
                 alias: App
 
 when@test:
